@@ -1,0 +1,124 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+    var products = ViewBag.FeaturedProducts as List<Product> ?? new();
+    var categories = ViewBag.Categories as List<Category> ?? new();
+    string[] icons = { "bi-basket3", "bi-book", "bi-cup-hot", "bi-pencil", "bi-heart", "bi-gift", "bi-lightbulb", "bi-globe", "bi-stars", "bi-award" };
+}
+
+<section class="home-hero-market mb-0">
+    <div class="container home-hero-market__inner">
+        <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-lg-6 order-2 order-lg-1">
+                <span class="home-hero-market__badge"><i class="bi bi-shop"></i> @ShopUi.BrandName</span>
+                <h1 class="home-hero-market__title">
+                    <span class="home-hero-market__title-line">Mua nhanh</span>
+                    <span class="home-hero-market__title-line home-hero-market__title-line--2"><span class="home-hero-market__accent">chọn đúng món cần</span></span>
+                </h1>
+                <p class="home-hero-market__lead">Sản phẩm thiết yếu, đặt hàng gọn, theo dõi đơn rõ ràng.</p>
+                <div class="home-hero-market__actions d-flex flex-wrap gap-2">
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary btn-lg px-4">
+                        <i class="bi bi-grid-3x3-gap me-2"></i>Vào cửa hàng
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2">
+                <div class="home-hero-market__showcase reveal">
+                    <div class="home-hero-market__showcase-inner">
+                        <i class="bi bi-basket3" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-section home-promo-strip py-3">
+    <div class="container">
+        <div class="home-promo-strip__inner d-flex flex-wrap align-items-center justify-content-between gap-3 rounded-4 px-4 py-3">
+            <div class="d-flex align-items-center gap-3">
+                <span class="home-promo-strip__icon"><i class="bi bi-tag-fill"></i></span>
+                <div>
+                    <strong class="d-block">Ưu đãi đang diễn ra</strong>
+                    <span class="small text-muted">Khám phá sản phẩm nổi bật và danh mục được quan tâm nhiều.</span>
+                </div>
+            </div>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-sm btn-dark rounded-pill px-4">Xem ngay</a>
+        </div>
+    </div>
+</section>
+
+<div class="container py-4">
+    @if (categories.Any())
+    {
+        <section class="home-section home-section--categories mb-5 pt-2">
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-3">
+                <div>
+                    <h2 class="section-title mb-1">Danh mục nổi bật</h2>
+                    <p class="text-muted small mb-0">Đi thẳng tới nhóm sản phẩm bạn cần.</p>
+                </div>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary btn-sm rounded-pill">
+                    Cửa hàng <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+            <div class="home-category-grid row g-3 g-md-4 reveal-stagger">
+                @for (var i = 0; i < categories.Count && i < 6; i++)
+                {
+                    var cat = categories[i];
+                    <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+                        <a class="category-card category-card--home d-flex flex-column align-items-center justify-content-center h-100 reveal text-decoration-none" asp-controller="Product" asp-action="Index" asp-route-categoryId="@cat.CategoryID">
+                            <span class="category-card--home__icon-wrap">
+                                <i class="bi @icons[i % icons.Length]" aria-hidden="true"></i>
+                            </span>
+                            <h6 class="category-card--home__title mb-0">@cat.CategoryName</h6>
+                        </a>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+
+    <section class="home-section mb-5">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+            <div>
+                <h2 class="section-title mb-1">Sản phẩm nổi bật</h2>
+                <p class="text-muted small mb-0">Một số sản phẩm đang được xem nhiều.</p>
+            </div>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary btn-sm">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+        </div>
+        @if (products.Any())
+        {
+            <div class="row g-3 reveal-stagger">
+                @foreach (var p in products)
+                {
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="product-card reveal h-100">
+                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@p.ProductID">
+                                <div class="card-img-wrap">
+                                    <img src="@ShopUi.ProductImage(p.Photo)" alt="@p.ProductName" onerror="this.onerror=null;this.src='@ShopUi.ProductPlaceholder';" />
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <a class="product-name" asp-controller="Product" asp-action="Detail" asp-route-id="@p.ProductID">@p.ProductName</a>
+                                <div class="product-price">@p.Price.ToString("N0") đ</div>
+                                <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                    <input type="hidden" name="productId" value="@p.ProductID" />
+                                    <button type="submit" class="btn btn-add-cart w-100">
+                                        <i class="bi bi-cart-plus me-1"></i>Thêm vào giỏ
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5 px-3 rounded-4 border border-dashed" style="border-color: var(--border) !important; background: var(--surface);">
+                <i class="bi bi-inboxes fs-1 text-muted mb-2 d-block"></i>
+                <p class="text-muted mb-3 mb-md-0">Chưa có sản phẩm để hiển thị.</p>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-primary mt-3">Đến cửa hàng</a>
+            </div>
+        }
+    </section>
+</div>

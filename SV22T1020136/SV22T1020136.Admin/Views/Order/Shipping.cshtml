@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    Layout = null;
+    var orderId = ViewBag.OrderId as int? ?? 0;
+    var shippers = ViewBag.Shippers as List<SelectListItem> ?? new List<SelectListItem>();
+}
+<form method="post" asp-action="Shipping" asp-controller="Order">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@orderId" />
+
+    <div class="modal-header text-bg-info">
+        <strong class="modal-title">
+            Chọn người giao hàng
+        </strong>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <label class="form-label">Người giao hàng</label>
+                <select class="form-select" name="shipperID" required>
+                    <option value="0">-- Chọn người giao hàng --</option>
+                    @foreach (var shipper in shippers)
+                    {
+                        <option value="@shipper.Value" selected="@shipper.Selected">@shipper.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-bicycle"></i> Giao hàng
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Đóng
+        </button>
+    </div>
+</form>

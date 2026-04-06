@@ -1,0 +1,90 @@
+@model Customer
+@{
+    ViewData["Title"] = "Thông tin tài khoản";
+    var provinces = ViewBag.Provinces as List<SV22T1020136.Models.DataDictionary.Province> ?? new();
+}
+
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Thông tin tài khoản</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-3 mb-4">
+            @await Html.PartialAsync("_AccountSidebar")
+        </div>
+        <div class="col-lg-9">
+            <div class="profile-dashboard-head mb-4 reveal">
+                <h1 class="h4 fw-bold mb-2 font-serif">Xin chào, @Model.CustomerName</h1>
+                <p class="text-muted small mb-0">Cập nhật thông tin cá nhân và quản lý đơn hàng của bạn.</p>
+            </div>
+            <div class="row g-3 mb-4 reveal">
+                <div class="col-md-6">
+                    <a asp-controller="Order" asp-action="History" class="profile-quick-tile d-block rounded-4 p-3 text-decoration-none h-100 border bg-white">
+                        <i class="bi bi-bag-check text-primary fs-4 mb-2 d-block"></i>
+                        <strong class="text-dark d-block">Đơn hàng của tôi</strong>
+                        <span class="small text-muted">Xem trạng thái và chi tiết</span>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a asp-controller="Product" asp-action="Index" class="profile-quick-tile d-block rounded-4 p-3 text-decoration-none h-100 border bg-white">
+                        <i class="bi bi-grid-3x3-gap text-primary fs-4 mb-2 d-block"></i>
+                        <strong class="text-dark d-block">Tiếp tục mua sắm</strong>
+                        <span class="small text-muted">Quay lại cửa hàng</span>
+                    </a>
+                </div>
+            </div>
+            <div class="static-page-card reveal">
+                <h4 class="fw-bold mb-4"><i class="bi bi-person me-2"></i>Thông tin cá nhân</h4>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success"><i class="bi bi-check-circle me-2"></i>@TempData["Success"]</div>
+                }
+
+                <form method="post" asp-action="Profile">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Tên khách hàng <span class="text-danger">*</span></label>
+                            <input type="text" name="CustomerName" class="form-control" value="@Model.CustomerName" required />
+                            <span class="text-danger small">@Html.ValidationMessage("CustomerName")</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Tên giao dịch</label>
+                            <input type="text" name="ContactName" class="form-control" value="@Model.ContactName" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" name="Email" class="form-control" value="@Model.Email" required />
+                            <span class="text-danger small">@Html.ValidationMessage("Email")</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Điện thoại</label>
+                            <input type="text" name="Phone" class="form-control" value="@Model.Phone" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Tỉnh / Thành phố</label>
+                            <select name="Province" class="form-select">
+                                <option value="">-- Chọn tỉnh/thành --</option>
+                                @foreach (var p in provinces)
+                                {
+                                    <option value="@p.ProvinceName" selected="@(p.ProvinceName == Model.Province)">@p.ProvinceName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Địa chỉ</label>
+                            <input type="text" name="Address" class="form-control" value="@Model.Address" />
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-2"></i>Cập nhật</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

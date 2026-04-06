@@ -1,0 +1,98 @@
+﻿@using SV22T1020136.Models
+@using SV22T1020136.Models.HR
+@model List<SV22T1020136.Models.Employee>
+@{
+    ViewBag.Title = "Quản lý nhân viên";
+    var searchValue = ViewBag.SearchValue as string ?? "";
+    var currentPage = (int)ViewBag.CurrentPage;
+    var totalRecords = (int)ViewBag.TotalRecords;
+    var totalPages = (int)ViewBag.TotalPages;
+}
+
+@section PageToolBar {
+    <a href="~/Employee/Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i>
+        Bổ sung
+    </a>
+}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="get" asp-action="Index" asp-controller="Employee">
+            <div class="input-group">
+                <input type="text" name="searchValue" value="@searchValue" class="form-control" placeholder="Tên nhân viên..." autofocus />
+                <button class="btn btn-info d-flex align-items-center"><i class="bi bi-search me-1"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-2 text-muted">Danh sách này có <strong>@totalRecords</strong> nhân viên</div>
+
+<div class="card">
+    <div class="card-body p-1">
+        <table class="table table-bordered table-hover mb-0">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Họ tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Điện thoại</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>
+                    <th class="text-center" style="width:120px;">Trạng thái</th>
+                    <th class="text-center" style="width:180px;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FullName</td>
+                            <td>@(item.BirthDate?.ToString("dd/MM/yyyy") ?? "")</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>@item.Address</td>
+                            <td class="text-center">
+                                @if (item.IsWorking)
+                                {
+                                    <span class="badge bg-success">Đang làm việc</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Da nghi</span>
+                                }
+                            </td>
+                            <td class="text-center text-nowrap">
+                                <a href="@Url.Action("Edit", "Employee", new { id = item.EmployeeID })" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+                                <a href="@Url.Action("ChangePassword", "Employee", new { id = item.EmployeeID })" class="btn btn-sm btn-warning"><i class="bi bi-key"></i></a>
+                                <a href="@Url.Action("ChangeRoles", "Employee", new { id = item.EmployeeID })" class="btn btn-sm btn-info"><i class="bi bi-shield-check"></i></a>
+                                <a asp-action="Delete" asp-controller="Employee" asp-route-id="@item.EmployeeID" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="7" class="text-center text-muted">Không có dữ liệu</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (totalPages > 1)
+    {
+        <div class="card-footer">
+            <ul class="pagination justify-content-center mb-0">
+                @for (int p = 1; p <= totalPages; p++)
+                {
+                    <li class="page-item @(p == currentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { searchValue, page = p })">@p</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>

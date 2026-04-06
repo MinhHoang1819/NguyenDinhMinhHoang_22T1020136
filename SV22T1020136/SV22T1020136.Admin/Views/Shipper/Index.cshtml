@@ -1,0 +1,67 @@
+﻿@using SV22T1020136.Models
+@using SV22T1020136.Models.Partner
+@model List<SV22T1020136.Models.Shipper>
+@{
+    ViewBag.Title = "Quản lý Người giao hàng";
+    var searchValue = ViewBag.SearchValue as string ?? "";
+    var currentPage = (int)ViewBag.CurrentPage;
+    var totalRecords = (int)ViewBag.TotalRecords;
+    var totalPages = (int)ViewBag.TotalPages;
+}
+
+@section PageToolBar {
+    <a href="~/Shipper/Create" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Bổ sung</a>
+}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="get" asp-action="Index" asp-controller="Shipper">
+            <div class="input-group">
+                <input type="text" name="searchValue" value="@searchValue" class="form-control" placeholder="Tên người giao hàng..." autofocus />
+                <button class="btn btn-info d-flex align-items-center"><i class="bi bi-search me-1"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-2 text-muted">Danh sách này có <strong>@totalRecords</strong> nguoi giao hang</div>
+<div class="card">
+    <div class="card-body p-1">
+        <table class="table table-bordered table-hover mb-0">
+            <thead class="table-secondary"><tr><th>Tên người giao hàng</th><th>Điện thoại</th><th class="text-center" style="width:140px;">Thao tác</th></tr></thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ShipperName</td>
+                            <td>@item.Phone</td>
+                            <td class="text-center text-nowrap">
+                                <a href="@Url.Action("Edit", "Shipper", new { id = item.ShipperID })" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+                                <a asp-action="Delete" asp-controller="Shipper" asp-route-id="@item.ShipperID" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="3" class="text-center text-muted">Không có dữ liệu</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (totalPages > 1)
+    {
+        <div class="card-footer">
+            <ul class="pagination justify-content-center mb-0">
+                @for (int p = 1; p <= totalPages; p++)
+                {
+                    <li class="page-item @(p == currentPage ? "active" : "")"><a class="page-link" href="@Url.Action("Index", new { searchValue, page = p })">@p</a></li>
+                }
+            </ul>
+        </div>
+    }
+</div>

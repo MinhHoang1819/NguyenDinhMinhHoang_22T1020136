@@ -1,0 +1,78 @@
+﻿@* @using SV22T1020136.Models
+@using SV22T1020136.Models.Common
+@model SV22T1020136.Models.Order
+
+@{
+    ViewData["Title"] = "Chỉnh sửa đơn hàng";
+}
+
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">Chỉnh sửa đơn hàng</h3>
+    </div>
+
+    <form asp-action="Edit" method="post">
+        <div class="card-body">
+            <!-- Tên khách hàng -->
+            <div class="mb-3">
+                <label for="CustomerName" class="form-label">Tên khách hàng</label>
+                <input asp-for="CustomerName" class="form-control" required />
+            </div>
+
+            <!-- Email khách hàng -->
+            <div class="mb-3">
+                <label for="CustomerEmail" class="form-label">Email khách hàng</label>
+                <input asp-for="CustomerEmail" class="form-control" required />
+            </div>
+
+            <!-- Tổng giá trị -->
+            <div class="mb-3">
+                <label for="Total" class="form-label">Tổng giá trị</label>
+                <input asp-for="Total" class="form-control" required />
+            </div>
+
+            <!-- Trạng thái -->
+            <div class="mb-3">
+                <label class="form-label">Trạng thái</label><br>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Status" value="Pending"
+                           @(Model.Status == "Pending" ? "checked" : "") />
+                    <label class="form-check-label">Chờ xử lý</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Status" value="Accepted"
+                           @(Model.Status == "Accepted" ? "checked" : "") />
+                    <label class="form-check-label">Đã chấp nhận</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Status" value="Shipped"
+                           @(Model.Status == "Shipped" ? "checked" : "") />
+                    <label class="form-check-label">Đang giao hàng</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Status" value="Finished"
+                           @(Model.Status == "Finished" ? "checked" : "") />
+                    <label class="form-check-label">Hoàn thành</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Status" value="Cancelled"
+                           @(Model.Status == "Cancelled" ? "checked" : "") />
+                    <label class="form-check-label">Đã hủy</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trường ẩn chứa OrderId -->
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="card-footer text-end">
+            <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+    </form>
+</div> *@

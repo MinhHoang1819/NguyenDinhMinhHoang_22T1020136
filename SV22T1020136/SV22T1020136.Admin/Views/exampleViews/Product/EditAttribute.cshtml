@@ -1,0 +1,30 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Catalog
+@model SV22T1020136.Models.ProductAttribute
+@{
+    var productID = ViewBag.ProductID as int? ?? 0;
+    var productName = ViewBag.ProductName as string ?? "";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-success">
+            <div class="card-header"><h3 class="card-title"><i class="bi bi-tags me-2"></i>Chỉnh sửa thuộc tính</h3></div>
+            <form asp-action="UpdateAttribute" method="post">
+                @Html.AntiForgeryToken()
+                <input asp-for="AttributeID" type="hidden" />
+                <input asp-for="ProductID" type="hidden" />
+                <div class="card-body">
+                    <div class="alert alert-info"><strong>Sản phẩm:</strong> @productName</div>
+                    <div class="mb-3"><label asp-for="AttributeName" class="form-label">Tên thuộc tính</label><input asp-for="AttributeName" class="form-control" /></div>
+                    <div class="mb-3"><label asp-for="AttributeValue" class="form-label">Giá trị</label><input asp-for="AttributeValue" class="form-control" /></div>
+                    <div class="mb-3"><label asp-for="DisplayOrder" class="form-label">Thứ tự hiển thị</label><input asp-for="DisplayOrder" type="number" min="0" class="form-control" /></div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i>Luu</button>
+                    <a href="@Url.Action("Details", "Product", new { id = productID })" class="btn btn-secondary">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Catalog
+@using SV22T1020136.Models.Partner
+@model List<SV22T1020136.Models.Product>
+@{
+    ViewBag.Title = "Quản lý mặt hàng";
+    var searchValue = ViewBag.SearchValue as string ?? "";
+    var supplierID = ViewBag.SupplierID as int?;
+    var categoryID = ViewBag.CategoryID as int?;
+    var minPrice = ViewBag.MinPrice as decimal?;
+    var maxPrice = ViewBag.MaxPrice as decimal?;
+    var currentPage = (int)ViewBag.CurrentPage;
+    var totalRecords = (int)ViewBag.TotalRecords;
+    var totalPages = (int)ViewBag.TotalPages;
+    var suppliers = ViewBag.Suppliers as List<SV22T1020136.Models.Supplier> ?? new List<SV22T1020136.Models.Supplier>();
+    var categories = ViewBag.Categories as List<SV22T1020136.Models.Category> ?? new List<SV22T1020136.Models.Category>();
+}
+
+@section PageToolBar {
+    <a href="@Url.Action("Edit", "Product")" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Bổ sung</a>
+}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="get" asp-action="Index" asp-controller="Product">
+            <div class="row g-2">
+                <div class="col-md-3">
+                    <label class="form-label">Loại hàng</label>
+                    <select class="form-select" name="categoryID">
+                        <option value="">-- Tất cả --</option>
+                        @foreach (var c in categories)
+                        {
+                            <option value="@c.CategoryID" selected="@(categoryID == c.CategoryID)">@c.CategoryName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Nhà cung cấp</label>
+                    <select class="form-select" name="supplierID">
+                        <option value="">-- Tất cả --</option>
+                        @foreach (var s in suppliers)
+                        {
+                            <option value="@s.SupplierID" selected="@(supplierID == s.SupplierID)">@s.SupplierName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Khoảng giá</label>
+                    <div class="input-group">
+                        <input type="number" step="0.01" min="0" name="minPrice" value="@minPrice" class="form-control" placeholder="Từ" />
+                        <span class="input-group-text">-</span>
+                        <input type="number" step="0.01" min="0" name="maxPrice" value="@maxPrice" class="form-control" placeholder="Đến" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Tên mặt hàng</label>
+                    <div class="input-group">
+                        <input type="text" name="searchValue" value="@searchValue" class="form-control" placeholder="Tên mặt hàng..." autofocus />
+                        <button class="btn btn-info d-flex align-items-center"><i class="bi bi-search me-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-2 text-muted">Danh sách này có <strong>@totalRecords</strong> mặt hàng</div>
+<div class="card">
+    <div class="card-body p-1">
+        <table class="table table-bordered table-hover mb-0 align-middle">
+            <thead class="table-secondary"><tr><th style="width:80px;">Ảnh</th><th>Mặt hàng</th><th style="width:120px;">Đơn vị</th><th style="width:120px;">Giá</th><th class="text-center" style="width:140px;">Trạng thái</th><th class="text-center" style="width:150px;">Thao tác</th></tr></thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var product in Model)
+                    {
+                        var thumb = string.IsNullOrWhiteSpace(product.Photo)
+                        ? Url.Content("~/images/products/nophoto.png")
+                        : (product.Photo.StartsWith("http", StringComparison.OrdinalIgnoreCase) ? product.Photo : Url.Content("~/images/products/" + product.Photo));
+                        <tr>
+                            <td class="text-center"><img src="@thumb" class="img-thumbnail" alt="@product.ProductName" /></td>
+                            <td><strong>@product.ProductName</strong><br /><small class="text-muted">@product.ProductDescription</small></td>
+                            <td>@product.Unit</td>
+                            <td class="text-end">@product.Price.ToString("N0")</td>
+                            <td class="text-center">@(product.IsSelling ? "Đang bán" : "Ngừng bán")</td>
+                            <td class="text-center text-nowrap">
+                                <a href="@Url.Action("Details", "Product", new { id = product.ProductID })" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a>
+                                <a href="@Url.Action("Edit", "Product", new { id = product.ProductID })" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                                <a asp-action="Delete" asp-controller="Product" asp-route-id="@product.ProductID" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="6" class="text-center text-muted">Không có mặt hàng</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (totalPages > 1)
+    {
+        <div class="card-footer">
+            @{
+                int pageSize = (int)(ViewBag.PageSize ?? 10);
+                int maxVisible = 7;
+                int half = maxVisible / 2;
+                int start = Math.Max(1, currentPage - half);
+                int end = Math.Min(totalPages, start + maxVisible - 1);
+                if (end - start + 1 < maxVisible)
+                {
+                    start = Math.Max(1, end - maxVisible + 1);
+                }
+            }
+            <div class="text-center mb-2">
+                <div class="mb-1 text-muted">Tổng cộng: <strong>@totalPages</strong> trang</div>
+                <nav aria-label="Phân trang mặt hàng">
+                    <ul class="pagination justify-content-center mb-0 flex-wrap">
+                        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("Index", "Product", new { searchValue, supplierID, categoryID, minPrice, maxPrice, page = Math.Max(1, currentPage - 1), pageSize })">«</a>
+                        </li>
+                        @if (start > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", "Product", new { searchValue, supplierID, categoryID, minPrice, maxPrice, page = 1, pageSize })">1</a>
+                            </li>
+                            @if (start > 2)
+                            {
+                                <li class="page-item disabled"><span class="page-link">…</span></li>
+                            }
+                        }
+                        @for (int p = start; p <= end; p++)
+                        {
+                            <li class="page-item @(p == currentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", "Product", new { searchValue, supplierID, categoryID, minPrice, maxPrice, page = p, pageSize })">@p</a>
+                            </li>
+                        }
+                        @if (end < totalPages)
+                        {
+                            if (end < totalPages - 1)
+                            {
+                                <li class="page-item disabled"><span class="page-link">…</span></li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", "Product", new { searchValue, supplierID, categoryID, minPrice, maxPrice, page = totalPages, pageSize })">@totalPages</a>
+                            </li>
+                        }
+                        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("Index", "Product", new { searchValue, supplierID, categoryID, minPrice, maxPrice, page = Math.Min(totalPages, currentPage + 1), pageSize })">»</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    }
+</div>

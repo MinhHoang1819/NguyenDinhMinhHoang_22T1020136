@@ -1,0 +1,113 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Catalog
+@using SV22T1020136.Models.Partner
+@model List<SV22T1020136.Models.Product>
+@{
+    ViewBag.Title = "Quản lý mặt hàng";
+    var searchValue = ViewBag.SearchValue as string ?? "";
+    var supplierID = ViewBag.SupplierID as int?;
+    var categoryID = ViewBag.CategoryID as int?;
+    var minPrice = ViewBag.MinPrice as decimal?;
+    var maxPrice = ViewBag.MaxPrice as decimal?;
+    var currentPage = (int)ViewBag.CurrentPage;
+    var totalRecords = (int)ViewBag.TotalRecords;
+    var totalPages = (int)ViewBag.TotalPages;
+    var suppliers = ViewBag.Suppliers as List<SV22T1020136.Models.Supplier> ?? new List<SV22T1020136.Models.Supplier>();
+    var categories = ViewBag.Categories as List<SV22T1020136.Models.Category> ?? new List<SV22T1020136.Models.Category>();
+}
+
+@section PageToolBar {
+    <a href="@Url.Action("Edit", "Product")" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Bổ sung</a>
+}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="get" asp-action="Index" asp-controller="Product">
+            <div class="row g-2">
+                <div class="col-md-3">
+                    <label class="form-label">loại hàng</label>
+                    <select class="form-select" name="categoryID">
+                        <option value="">-- Tất cả --</option>
+                        @foreach (var c in categories)
+                        {
+                            <option value="@c.CategoryID" selected="@(categoryID == c.CategoryID)">@c.CategoryName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">nhà cung cấp</label>
+                    <select class="form-select" name="supplierID">
+                        <option value="">-- Tất cả --</option>
+                        @foreach (var s in suppliers)
+                        {
+                            <option value="@s.SupplierID" selected="@(supplierID == s.SupplierID)">@s.SupplierName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Khoảng giá</label>
+                    <div class="input-group">
+                        <input type="number" step="0.01" min="0" name="minPrice" value="@minPrice" class="form-control" placeholder="Từ" />
+                        <span class="input-group-text">-</span>
+                        <input type="number" step="0.01" min="0" name="maxPrice" value="@maxPrice" class="form-control" placeholder="Đến" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Tên mặt hàng</label>
+                    <div class="input-group">
+                        <input type="text" name="searchValue" value="@searchValue" class="form-control" placeholder="Tên mặt hàng..." autofocus />
+                        <button class="btn btn-info d-flex align-items-center"><i class="bi bi-search me-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-2 text-muted">Danh sách này có <strong>@totalRecords</strong> mặt hàng</div>
+<div class="card"><div class="card-body p-1">
+<table class="table table-bordered table-hover mb-0 align-middle">
+<thead class="table-secondary"><tr><th style="width:80px;">Ảnh</th><th>mặt hàng</th><th style="width:120px;">Đơn vị</th><th style="width:120px;">Gia</th><th class="text-center" style="width:140px;">Trạng thái</th><th class="text-center" style="width:150px;">Thao tác</th></tr></thead>
+<tbody>
+@if (Model.Any())
+{
+    foreach (var product in Model)
+    {
+        <tr>
+            @{
+                var exThumb = string.IsNullOrWhiteSpace(product.Photo)
+                    ? Url.Content("~/images/products/nophoto.png")
+                    : (product.Photo.StartsWith("http", StringComparison.OrdinalIgnoreCase) ? product.Photo : Url.Content("~/images/products/" + product.Photo));
+            }
+            <td class="text-center"><img src="@exThumb" class="img-thumbnail" alt="@product.ProductName" /></td>
+            <td><strong>@product.ProductName</strong><br /><small class="text-muted">@product.ProductDescription</small></td>
+            <td>@product.Unit</td>
+            <td class="text-end">@product.Price.ToString("N0")</td>
+            <td class="text-center">@(product.IsSelling ? "Đang bán" : "Ngừng bán")</td>
+            <td class="text-center text-nowrap">
+                <a href="@Url.Action("Details", "Product", new { id = product.ProductID })" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a>
+                <a href="@Url.Action("Edit", "Product", new { id = product.ProductID })" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                <form method="post" action="@Url.Action("Delete", "Product")" style="display:inline" onsubmit="return confirm('Xóa mặt hàng này?');">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@product.ProductID" />
+                    <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                </form>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr><td colspan="6" class="text-center text-muted">Không có mặt hàng</td></tr>
+}
+</tbody></table></div>
+@if (totalPages > 1)
+{
+<div class="card-footer"><ul class="pagination justify-content-center mb-0">
+@for (int p = 1; p <= totalPages; p++)
+{
+<li class="page-item @(p == currentPage ? "active" : "")"><a class="page-link" href="@Url.Action("Index", new { searchValue, supplierID, categoryID, minPrice, maxPrice, page = p })">@p</a></li>
+}
+</ul></div>
+}
+</div>

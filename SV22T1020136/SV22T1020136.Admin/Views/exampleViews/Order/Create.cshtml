@@ -1,0 +1,102 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Catalog
+@using SV22T1020136.Models.Partner
+@using SV22T1020136.Models.Sales
+@model SV22T1020136.Models.Order
+@{
+    ViewBag.Title = "Lập đơn hàng";
+    var products = ViewBag.Products as List<SV22T1020136.Models.Product> ?? new List<SV22T1020136.Models.Product>();
+    var customers = ViewBag.Customers as List<SV22T1020136.Models.Customer> ?? new List<SV22T1020136.Models.Customer>();
+}
+
+<div class="card">
+    <div class="card-header"><h5 class="mb-0">Tạo đơn hàng</h5></div>
+    <div class="card-body">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
+
+        <form method="post" asp-action="Create" asp-controller="Order" id="orderForm">
+            @Html.AntiForgeryToken()
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">khách hàng</label>
+                    <select class="form-select" name="CustomerID">
+                        <option value="">-- Chọn khách hàng --</option>
+                        @foreach (var c in customers)
+                        {
+                            <option value="@c.CustomerID">@c.CustomerName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3"><label class="form-label">Tỉnh / Thành</label><input type="text" class="form-control" name="DeliveryProvince" /></div>
+                <div class="col-md-3"><label class="form-label">Địa chỉ giao hàng</label><input type="text" class="form-control" name="DeliveryAddress" /></div>
+            </div>
+
+            <div class="table-responsive"><table class="table table-bordered" id="detailTable"><thead class="table-light"><tr><th style="width:50%">mặt hàng</th><th style="width:15%">Số lượng</th><th style="width:20%">Giá bán</th><th style="width:15%"></th></tr></thead><tbody></tbody></table></div>
+
+            <div class="row g-2 mb-3">
+                <div class="col-md-7">
+                    <select id="productSelect" class="form-select">
+                        <option value="">-- Chọn mặt hàng để thêm --</option>
+                        @foreach (var p in products)
+                        {
+                            <option value="@p.ProductID" data-price="@p.Price">@p.ProductName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2"><input id="qtyInput" type="number" min="1" value="1" class="form-control" /></div>
+                <div class="col-md-2"><input id="priceInput" type="number" min="0" step="0.01" class="form-control" placeholder="Giá" /></div>
+                <div class="col-md-1"><button type="button" class="btn btn-primary w-100" onclick="addDetail()">Them</button></div>
+            </div>
+
+            <div class="text-end"><a href="~/Order" class="btn btn-secondary">Quay lại</a><button type="submit" class="btn btn-primary">Lưu đơn hàng</button></div>
+        </form>
+    </div>
+</div>
+
+<script>
+let details = [];
+function addDetail() {
+    const productSelect = document.getElementById('productSelect');
+    const productId = parseInt(productSelect.value || '0');
+    if (!productId) return;
+    const qty = parseInt(document.getElementById('qtyInput').value || '1');
+    let price = parseFloat(document.getElementById('priceInput').value || '0');
+    if (price <= 0) {
+        price = parseFloat(productSelect.options[productSelect.selectedIndex].getAttribute('data-price') || '0');
+    }
+    const existing = details.find(x => x.productID === productId);
+    if (existing) {
+        existing.quantity += qty;
+        existing.salePrice = price;
+    } else {
+        details.push({ productID: productId, quantity: qty, salePrice: price, text: productSelect.options[productSelect.selectedIndex].text });
+    }
+    renderDetails();
+}
+function removeDetail(productId) {
+    details = details.filter(x => x.productID !== productId);
+    renderDetails();
+}
+function renderDetails() {
+    const tbody = document.querySelector('#detailTable tbody');
+    const form = document.getElementById('orderForm');
+    tbody.innerHTML = '';
+    form.querySelectorAll('input[name^="OrderDetails"]').forEach(e => e.remove());
+    details.forEach((d, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${d.text}</td><td>${d.quantity}</td><td>${d.salePrice}</td><td class="text-center"><button type="button" class="btn btn-sm btn-danger" onclick="removeDetail(${d.productID})">Xoa</button></td>`;
+        tbody.appendChild(tr);
+        const pid = document.createElement('input'); pid.type = 'hidden'; pid.name = `OrderDetails[${i}].ProductID`; pid.value = d.productID; form.appendChild(pid);
+        const qty = document.createElement('input'); qty.type = 'hidden'; qty.name = `OrderDetails[${i}].Quantity`; qty.value = d.quantity; form.appendChild(qty);
+        const price = document.createElement('input'); price.type = 'hidden'; price.name = `OrderDetails[${i}].SalePrice`; price.value = d.salePrice; form.appendChild(price);
+    });
+}
+</script>

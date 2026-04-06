@@ -1,0 +1,45 @@
+﻿@* @model SV22T1020136.Admin.Controllers.ProductController.Product
+
+@{
+    ViewData["Title"] = "Bổ sung sản phẩm";
+}
+
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">Thêm mới sản phẩm</h3>
+    </div>
+
+    <form asp-action="Create" method="post">
+        <div class="card-body">
+
+            <div class="mb-3">
+                <label for="Name" class="form-label">Tên sản phẩm</label>
+                <input asp-for="Name" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="Description" class="form-label">Mô tả</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="Price" class="form-label">Giá</label>
+                <input asp-for="Price" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="IsActive" class="form-label">Trạng thái</label>
+                <select asp-for="IsActive" class="form-select">
+                    <option value="true">Hoạt động</option>
+                    <option value="false">Không hoạt động</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="card-footer text-end">
+            <a asp-action="Index" class="btn btn-secondary">Huỷ</a>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+    </form>
+</div> *@

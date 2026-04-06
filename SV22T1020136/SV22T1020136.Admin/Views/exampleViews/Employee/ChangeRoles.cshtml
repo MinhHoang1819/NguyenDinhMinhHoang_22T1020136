@@ -1,0 +1,87 @@
+@{
+    ViewData["Title"] = "Phân Quyền Nhân Viên";
+    var employeeID = ViewBag.EmployeeID as int? ?? 0;
+    var fullName = ViewBag.FullName as string ?? "";
+    var availableRoles = ViewBag.AvailableRoles as List<string> ?? new List<string>();
+    var currentRoles = ViewBag.CurrentRoles as List<string> ?? new List<string>();
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="bi bi-shield-lock me-2"></i>Phân Quyền Nhân Viên
+                </h3>
+            </div>
+            <!-- /.card-header -->
+            <form asp-action="ChangeRoles" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@employeeID" />
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Nhân viên:</strong> @fullName
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>
+                            <i class="bi bi-shield-check me-1"></i>Quyền <span class="text-danger">*</span>
+                        </label>
+                        <small class="form-text text-muted d-block mb-2">
+                            Chọn các quyền cho nhân viên này:
+                        </small>
+                        @foreach (var role in availableRoles)
+                        {
+                            var isChecked = currentRoles.Contains(role);
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" 
+                                       type="checkbox" 
+                                       name="selectedRoles" 
+                                       value="@role" 
+                                       id="role_@role"
+                                       @(isChecked ? "checked" : "") />
+                                <label class="form-check-label" for="role_@role">
+                                    <strong>@role</strong>
+                                    @switch (role)
+                                    {
+                                        case "Admin":
+                                            <small class="text-muted"> - Quản trị viên (toàn quyền hệ thống)</small>
+                                            break;
+                                        case "Manager":
+                                            <small class="text-muted"> - Quản lý (quản lý nhân viên và đơn hàng)</small>
+                                            break;
+                                        case "Employee":
+                                            <small class="text-muted"> - Nhân viên (quyền cơ bản)</small>
+                                            break;
+                                        case "Staff":
+                                            <small class="text-muted"> - Nhân viên văn phòng</small>
+                                            break;
+                                        case "Sale":
+                                            <small class="text-muted"> - Nhân viên bán hàng</small>
+                                            break;
+                                        case "Warehouse":
+                                            <small class="text-muted"> - Nhân viên kho</small>
+                                            break;
+                                    }
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle me-2"></i>Lưu Phân Quyền
+                    </button>
+                    <a href="@Url.Action("Index", "Employee")" class="btn btn-secondary">
+                        <i class="bi bi-x-circle me-2"></i>Hủy
+                    </a>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col-md-6 -->
+</div>
+<!-- /.row -->

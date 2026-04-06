@@ -1,0 +1,26 @@
+@using SV22T1020136.Models.Sales
+@model OrderDetail
+@{
+    var orderId = ViewBag.OrderId as int? ?? 0;
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-outline card-primary">
+            <div class="card-header"><h5 class="mb-0">Cập nhật sản phẩm trong đơn #@orderId</h5></div>
+            <div class="card-body">
+                <form method="post" asp-action="EditCartItem" asp-controller="Order">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@orderId" />
+                    <input type="hidden" name="productId" value="@Model.ProductID" />
+                    <div class="mb-3"><label class="form-label">Mã Sản phẩm</label><input type="text" class="form-control" value="@Model.ProductID" readonly /></div>
+                    <div class="mb-3"><label class="form-label">Số lượng</label><input type="number" class="form-control" name="quantity" min="1" value="@Model.Quantity" /></div>
+                    <div class="text-end">
+                        <a href="@Url.Action("Detail", "Order", new { id = orderId })" class="btn btn-secondary">Quay lại</a>
+                        <button type="submit" class="btn btn-primary">Luu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

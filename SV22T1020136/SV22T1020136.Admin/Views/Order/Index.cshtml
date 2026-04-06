@@ -1,0 +1,157 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Sales
+@model List<SV22T1020136.Models.Order>
+@{
+    ViewBag.Title = "Quản lý Đơn hàng";
+    var q = ViewBag.Query as string ?? "";
+    var currentPage = (int)ViewBag.CurrentPage;
+    var totalRecords = (int)ViewBag.TotalRecords;
+    var totalPages = (int)ViewBag.TotalPages;
+}
+
+@section PageToolBar {
+    <a href="~/Order/Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i>
+        Lập đơn hàng mới
+    </a>
+}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form id="formSearch"
+              method="get"
+              action="~/Order/Search"
+              data-target="searchResult"
+              onsubmit="paginationSearch(event, this, 1)">
+
+            <div class="row g-2">
+                <div class="col-md-3">
+                    <label class="form-label">Trạng thái đơn hàng</label>
+                    <select name="status" class="form-select">
+                        <option value="">-- Tất cả --</option>
+                        <option value="@((int)OrderStatusEnum.New)">Đang chờ duyệt</option>
+                        <option value="@((int)OrderStatusEnum.Accepted)">Đã duyệt</option>
+                        <option value="@((int)OrderStatusEnum.Shipping)">Đang giao</option>
+                        <option value="@((int)OrderStatusEnum.Completed)">Hoàn tất</option>
+                        <option value="@((int)OrderStatusEnum.Cancelled)">Bị hủy</option>
+                        <option value="@((int)OrderStatusEnum.Rejected)">Bị từ chối</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Thời gian lập đơn hàng</label>
+                    <div class="input-group">
+                        <input type="text" name="dateFrom" class="form-control date-picker" placeholder="Từ ngày..." />
+                        <span class="input-group-text">-</span>
+                        <input type="text" name="dateTo" class="form-control date-picker" placeholder="...đến ngày" />
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <label class="form-label">Tên khách hàng</label>
+                    <div class="input-group">
+                        <input type="text" name="searchValue" class="form-control" placeholder="Tên khách hàng..." autofocus />
+                        <button class="btn btn-info d-flex align-items-center">
+                            <i class="bi bi-search me-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="mb-2 text-muted">Danh sách này có <strong>@totalRecords</strong> đơn hàng</div>
+    <div class="card">
+        <div class="card-body p-1">
+            <table class="table table-bordered table-hover mb-0 align-middle">
+                <thead class="table-secondary"><tr><th>Mã</th><th>Khách hàng</th><th>Ngày đặt</th><th>Địa chỉ giao</th><th class="text-center">Trạng thái</th><th class="text-center" style="width:80px"></th></tr></thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.OrderID</td>
+                                <td>@item.CustomerName</td>
+                                <td>@item.OrderTime.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@item.DeliveryAddress</td>
+                                <td class="text-center">@(item.StatusDescription ?? item.Status)</td>
+                                <td class="text-center"><a href="@Url.Action("Detail", "Order", new { id = item.OrderID })" class="btn btn-sm btn-primary"><i class="bi bi-receipt"></i></a></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="6" class="text-center text-muted">Không có đơn hàng</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @if (totalPages > 1)
+        {
+            <div class="card-footer">
+                @{
+                    int pageSize = (int)(ViewBag.PageSize ?? 10);
+                    int maxVisible = 7;
+                    int half = maxVisible / 2;
+                    int start = Math.Max(1, currentPage - half);
+                    int end = Math.Min(totalPages, start + maxVisible - 1);
+                    if (end - start + 1 < maxVisible)
+                    {
+                        start = Math.Max(1, end - maxVisible + 1);
+                    }
+                }
+                <div class="text-center mb-2">
+                    <div class="mb-1 text-muted">Tổng cộng: <strong>@totalPages</strong> trang</div>
+                    <nav aria-label="Phân trang đơn hàng">
+                        <ul class="pagination justify-content-center mb-0 flex-wrap">
+                            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                                <a class="page-link" href="@Url.Action("Index", "Order", new { q, page = Math.Max(1, currentPage - 1), pageSize })">«</a>
+                            </li>
+                            @if (start > 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Index", "Order", new { q, page = 1, pageSize })">1</a>
+                                </li>
+                                @if (start > 2)
+                                {
+                                    <li class="page-item disabled"><span class="page-link">…</span></li>
+                                }
+                            }
+                            @for (int p = start; p <= end; p++)
+                            {
+                                <li class="page-item @(p == currentPage ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", "Order", new { q, page = p, pageSize })">@p</a>
+                                </li>
+                            }
+                            @if (end < totalPages)
+                            {
+                                if (end < totalPages - 1)
+                                {
+                                    <li class="page-item disabled"><span class="page-link">…</span></li>
+                                }
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Index", "Order", new { q, page = totalPages, pageSize })">@totalPages</a>
+                                </li>
+                            }
+                            <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                                <a class="page-link" href="@Url.Action("Index", "Order", new { q, page = Math.Min(totalPages, currentPage + 1), pageSize })">»</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+<div id="searchResult"></div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            paginationSearch(null, document.getElementById("formSearch"), 1);
+        });
+    </script>
+}

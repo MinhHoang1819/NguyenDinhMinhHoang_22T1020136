@@ -1,0 +1,61 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Catalog
+@model List<SV22T1020136.Models.ProductPhoto>
+@{
+    var productId = ViewBag.ProductID as int? ?? 0;
+    var productName = ViewBag.ProductName as string ?? "";
+    var mainPhoto = ViewBag.MainPhoto as string ?? "";
+}
+
+<div class="card card-info card-outline">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h6 class="mb-0"><i class="bi bi-images me-2"></i>Thư viện ảnh - @productName</h6>
+        <div>
+            <a class="btn btn-sm btn-primary" href="@Url.Action("AddPhoto", "Product", new { id = productId })"><i class="bi bi-plus-circle me-1"></i>Thêm ảnh</a>
+            <a class="btn btn-sm btn-secondary" href="@Url.Action("Details", "Product", new { id = productId })">Quay lại</a>
+        </div>
+    </div>
+    <div class="card-body p-1">
+        <table class="table table-bordered table-hover mb-0">
+            <thead class="table-secondary"><tr><th style="width:120px">Ảnh</th><th>Mô tả</th><th style="width:120px" class="text-center">Thứ tự</th><th style="width:120px" class="text-center">Hiển thị</th><th style="width:210px"></th></tr></thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var photo in Model)
+                    {
+                        <tr>
+                            @{
+                                var exPhotoSrc = string.IsNullOrWhiteSpace(photo.Photo)
+                                    ? Url.Content("~/images/products/nophoto.png")
+                                    : (photo.Photo.StartsWith("http", StringComparison.OrdinalIgnoreCase) ? photo.Photo : Url.Content("~/images/products/" + photo.Photo));
+                            }
+                            <td class="text-center"><img src="@exPhotoSrc" class="img-thumbnail" style="max-height:80px;" /></td>
+                            <td>@photo.Description</td>
+                            <td class="text-center">@photo.DisplayOrder</td>
+                            <td class="text-center">@(photo.IsHidden ? "Ẩn" : "Hiện")</td>
+                            <td class="text-center text-nowrap">
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("EditPhoto", "Product", new { id = productId, photoId = photo.PhotoID })"><i class="bi bi-pencil"></i></a>
+                                <form asp-action="SetMainPhoto" asp-controller="Product" method="post" style="display:inline">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@productId" />
+                                    <input type="hidden" name="photoId" value="@photo.PhotoID" />
+                                    <button type="submit" class="btn btn-sm @(mainPhoto == photo.Photo ? "btn-success" : "btn-outline-success")"><i class="bi bi-star"></i></button>
+                                </form>
+                                <form asp-action="DeletePhoto" asp-controller="Product" method="post" style="display:inline" onsubmit="return confirm('Xóa hình ảnh này?');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@productId" />
+                                    <input type="hidden" name="photoId" value="@photo.PhotoID" />
+                                    <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="5" class="text-center text-muted">Chưa có ảnh</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

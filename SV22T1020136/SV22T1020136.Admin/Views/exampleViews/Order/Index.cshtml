@@ -1,0 +1,56 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Sales
+@model List<SV22T1020136.Models.Order>
+@{
+    ViewBag.Title = "Quản lý đơn hàng";
+    var q = ViewBag.Query as string ?? "";
+    var currentPage = (int)ViewBag.CurrentPage;
+    var totalRecords = (int)ViewBag.TotalRecords;
+    var totalPages = (int)ViewBag.TotalPages;
+}
+
+@section PageToolBar {
+    <a href="~/Order/Create" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Lập đơn hàng mới</a>
+}
+
+<div class="card mb-3"><div class="card-body">
+    <form method="get" asp-action="Index" asp-controller="Order">
+        <div class="input-group">
+            <input type="text" name="q" value="@q" class="form-control" placeholder="Tìm theo Địa chỉ giao hang..." autofocus />
+            <button class="btn btn-info d-flex align-items-center"><i class="bi bi-search me-1"></i></button>
+        </div>
+    </form>
+</div></div>
+
+<div class="mb-2 text-muted">Danh sách này có <strong>@totalRecords</strong> đơn hàng</div>
+<div class="card"><div class="card-body p-1">
+<table class="table table-bordered table-hover mb-0 align-middle">
+<thead class="table-secondary"><tr><th>Ma</th><th>khách hàng</th><th>Ngày đặt</th><th>Địa chỉ giao</th><th class="text-center">Trạng thái</th><th class="text-center" style="width:80px"></th></tr></thead>
+<tbody>
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.OrderID</td><td>@item.CustomerName</td><td>@item.OrderTime.ToString("dd/MM/yyyy HH:mm")</td><td>@item.DeliveryAddress</td>
+            <td class="text-center">@(item.StatusDescription ?? item.Status)</td>
+            <td class="text-center"><a href="@Url.Action("Detail", "Order", new { id = item.OrderID })" class="btn btn-sm btn-primary"><i class="bi bi-receipt"></i></a></td>
+        </tr>
+    }
+}
+else
+{
+    <tr><td colspan="6" class="text-center text-muted">Không có đơn hàng</td></tr>
+}
+</tbody></table>
+</div>
+@if (totalPages > 1)
+{
+<div class="card-footer"><ul class="pagination justify-content-center mb-0">
+@for (int p = 1; p <= totalPages; p++)
+{
+<li class="page-item @(p == currentPage ? "active" : "")"><a class="page-link" href="@Url.Action("Index", new { q, page = p })">@p</a></li>
+}
+</ul></div>
+}
+</div>

@@ -1,0 +1,75 @@
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.deps.json
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.AssemblyReference.cache
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfoInputs.cache
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfo.cs
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.CoreCompileInputs.cache
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T102.3A3DF390.Up2Date
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\refint\SV22T1020136.DataLayers.dll
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\ref\SV22T1020136.DataLayers.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.deps.json
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.AssemblyReference.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfoInputs.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfo.cs
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.CoreCompileInputs.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T102.3A3DF390.Up2Date
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\refint\SV22T1020136.DataLayers.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\ref\SV22T1020136.DataLayers.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.deps.json
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.AssemblyReference.cache
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfoInputs.cache
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfo.cs
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.CoreCompileInputs.cache
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T102.3A3DF390.Up2Date
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\refint\SV22T1020136.DataLayers.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\ref\SV22T1020136.DataLayers.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.deps.json
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.AssemblyReference.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfoInputs.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfo.cs
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.CoreCompileInputs.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T102.3A3DF390.Up2Date
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\refint\SV22T1020136.DataLayers.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\ref\SV22T1020136.DataLayers.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.deps.json
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.AssemblyReference.cache
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfoInputs.cache
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.AssemblyInfo.cs
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.csproj.CoreCompileInputs.cache
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T102.3A3DF390.Up2Date
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\refint\SV22T1020136.DataLayers.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\SV22T1020136.DataLayers.pdb
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.DataLayers\obj\Debug\net8.0\ref\SV22T1020136.DataLayers.dll

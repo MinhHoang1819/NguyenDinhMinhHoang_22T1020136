@@ -1,0 +1,107 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LiteCommerce - @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap-icons.min.css" />
+    @* Đảm bảo đường dẫn CSS AdminLTE chính xác *@
+    <link rel="stylesheet" href="~/lib/adminlte/css/adminlte.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary">
+    <div class="app-wrapper">
+        @* Header & Sidebar cũ của bạn *@
+        @await Html.PartialAsync("_Header")
+        @await Html.PartialAsync("_Sidebar")
+
+        <main class="app-main">
+            <div class="app-content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h5 class="mb-0">@ViewBag.Title</h5>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="input-group d-flex justify-content-end">
+                                @await RenderSectionAsync("PageToolBar", required: false)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+
+        @await Html.PartialAsync("_Footer")
+    </div>
+
+    <button id="scrollToTop" onclick="window.scrollTo(0,0)" class="btn btn-primary rounded-circle shadow" style="position:fixed; bottom:20px; right:20px; display:none;">
+        <i class="bi bi-arrow-up-circle"></i>
+    </button>
+
+    <div class="modal fade" id="dialogModal" tabindex="-1" aria-hidden="true" style="display:none;">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script src="~/lib/flatpickr/l10n/vn.js"></script>
+    <script src="~/lib/autonumeric/autonumeric.js"></script>
+    <script src="~/lib/bootstrap/bootstrap.bundle.min.js"></script>
+    <script type="module" src="~/lib/adminlte/js/adminlte.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Cấu hình chọn ngày tiếng Việt
+            flatpickr(".date-picker", {
+                dateFormat: "d/m/Y",
+                locale: "vn",
+                allowInput: false
+            });
+
+            // Tự động định dạng số tiền (1.000.000)
+            document.querySelectorAll(".money-input").forEach(element => {
+                new AutoNumeric(element, {
+                    digitGroupSeparator: '.',
+                    decimalCharacter: ',',
+                    decimalPlaces: 0,
+                    unformatOnSubmit: true
+                });
+            });
+
+            // Xử lý mở Modal chung
+            document.querySelectorAll(".open-modal").forEach(element => {
+                 element.addEventListener("click", function (e) {
+                    openModal(e, this);
+                });
+            });
+
+            // Hiện/Ẩn nút Scroll to top
+            window.onscroll = function() {
+                let btn = document.getElementById("scrollToTop");
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    btn.style.display = "block";
+                } else {
+                    btn.style.display = "none";
+                }
+            };
+        });
+    </script>
+
+    @* QUAN TRỌNG: Nơi nạp Script vẽ biểu đồ từ trang Home *@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

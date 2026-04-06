@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Dang nhap";
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dang nhap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/lib/adminlte/css/adminlte.css" />
+</head>
+<body class="login-page bg-body-secondary">
+    <div class="login-box">
+        <div class="login-logo"><a><b>phuong</b> Shop</a></div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Dang nhap</p>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <div>@error.ErrorMessage</div>
+                        }
+                    </div>
+                }
+                <form asp-action="Login" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="returnUrl" value="@(ViewData["ReturnUrl"] ?? "")" />
+                    <div class="input-group mb-3">
+                        <input type="text" name="username" class="form-control" placeholder="Username" autofocus />
+                        <div class="input-group-text"><span class="bi bi-person"></span></div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password" />
+                        <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
+                    </div>
+                    <div class="d-grid"><button type="submit" class="btn btn-primary">Dang nhap</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

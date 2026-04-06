@@ -1,0 +1,43 @@
+﻿@* @model SV22T1020104.Admin.Controllers.SupplierController.Supplier
+@{
+    ViewData["Title"] = "Thêm nhà cung cấp";
+}
+
+<div class="card card-success card-outline">
+    <div class="card-header"><h3 class="card-title">Thêm nhà cung cấp</h3></div>
+
+    <form asp-action="Create" method="post">
+        <div class="card-body row">
+            <div class="col-md-6 mb-3">
+                <label>Tên nhà cung cấp</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Tên giao dịch</label>
+                <input asp-for="TradeName" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Điện thoại</label>
+                <input asp-for="Phone" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Email</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="col-md-12 mb-3">
+                <label>Địa chỉ</label>
+                <input asp-for="Address" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Tỉnh/Thành</label>
+                <select asp-for="Province" class="form-select"
+                        asp-items="@(new SelectList(ViewBag.Provinces))"></select>
+            </div>
+        </div>
+
+        <div class="card-footer text-end">
+            <a asp-action="Index" class="btn btn-secondary">Huỷ</a>
+            <button class="btn btn-success"><i class="bi bi-save"></i> Lưu</button>
+        </div>
+    </form>
+</div> *@

@@ -1,0 +1,101 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Catalog
+@model SV22T1020136.Models.Product
+@{
+    ViewData["Title"] = "Chi tiết Mặt Hàng";
+    var supplierName = ViewBag.SupplierName as string ?? "";
+    var categoryName = ViewBag.CategoryName as string ?? "";
+    var attributes = ViewBag.Attributes as List<SV22T1020136.Models.ProductAttribute> ?? new List<SV22T1020136.Models.ProductAttribute>();
+    var rawPhoto = (Model.Photo ?? "").Trim();
+    var noPhoto = Url.Content("~/images/products/nophoto.png");
+    var mainImg = string.IsNullOrWhiteSpace(rawPhoto)
+        ? noPhoto
+        : (rawPhoto.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || rawPhoto.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+            ? rawPhoto
+            : (rawPhoto.StartsWith("~/", StringComparison.OrdinalIgnoreCase)
+                ? Url.Content(rawPhoto)
+                : (rawPhoto.StartsWith("/", StringComparison.OrdinalIgnoreCase)
+                    ? rawPhoto
+                    : Url.Content("~/images/products/" + rawPhoto.TrimStart('/')))));
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"><i class="bi bi-box-seam me-2"></i>Chi tiết Mặt Hàng: @Model.ProductName</h3>
+                <div class="card-tools">
+                    <a href="@Url.Action("ListPhotos", "Product", new { id = Model.ProductID })" class="btn btn-info btn-sm me-2"><i class="bi bi-images me-1"></i>Quản lý Hình Ảnh</a>
+                    <a href="@Url.Action("Edit", "Product", new { id = Model.ProductID })" class="btn btn-warning btn-sm"><i class="bi bi-pencil me-1"></i>Chỉnh sửa</a>
+                    <a href="@Url.Action("Index", "Product")" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Quay lại</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr><th style="width: 200px;">Mã mặt hàng</th><td>@Model.ProductID</td></tr>
+                                <tr><th>Tên mặt hàng</th><td><strong>@Model.ProductName</strong></td></tr>
+                                <tr><th>Mô tả</th><td>@Model.ProductDescription</td></tr>
+                                <tr><th>Nhà cung cấp</th><td>@supplierName</td></tr>
+                                <tr><th>Loại hàng</th><td>@categoryName</td></tr>
+                                <tr><th>Đơn vị</th><td>@Model.Unit</td></tr>
+                                <tr><th>Giá</th><td><strong class="text-danger">@Model.Price.ToString("N0") VNĐ</strong></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <img src="@mainImg" alt="@Model.ProductName" class="img-fluid rounded" style="max-height: 400px;" onerror="this.onerror=null;this.src='@noPhoto';" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h3 class="card-title"><i class="bi bi-tags me-2"></i>Thuộc tính sản phẩm</h3>
+                <div class="card-tools">
+                    <a href="@Url.Action("AddAttribute", "Product", new { id = Model.ProductID })" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus-circle me-1"></i>Thêm Thuộc Tính
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                @if (attributes.Any())
+                {
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead><tr><th>Tên thuộc tính</th><th>Giá trị</th><th style="width:120px;">Thứ tự</th><th style="width:180px;">Thao tác</th></tr></thead>
+                        <tbody>
+                            @foreach (var attr in attributes)
+                            {
+                                <tr>
+                                    <td><strong>@attr.AttributeName</strong></td>
+                                    <td>@attr.AttributeValue</td>
+                                    <td class="text-center">@attr.DisplayOrder</td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("EditAttribute", "Product", new { id = Model.ProductID, attributeId = attr.AttributeID })" class="btn btn-warning btn-sm">
+                                            <i class="bi bi-pencil"></i> Sửa
+                                        </a>
+                                        <form asp-action="DeleteAttribute" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc muốn xóa thuộc tính này?');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@Model.ProductID" />
+                                            <input type="hidden" name="attributeId" value="@attr.AttributeID" />
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Xóa</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="text-center text-muted py-4"><i class="bi bi-inbox me-2"></i>Chưa có thuộc tính nào.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

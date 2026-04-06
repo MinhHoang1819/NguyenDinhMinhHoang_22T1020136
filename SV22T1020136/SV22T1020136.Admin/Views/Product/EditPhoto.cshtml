@@ -1,0 +1,73 @@
+@using SV22T1020136.Models
+@using SV22T1020136.Models.Catalog
+@model SV22T1020136.Models.ProductPhoto
+@{
+    var productID = ViewBag.ProductID as int? ?? 0;
+    var productName = ViewBag.ProductName as string ?? "";
+    var rawPhoto = (Model.Photo ?? "").Trim();
+    var noPhoto = Url.Content("~/images/products/nophoto.png");
+    var previewImg = string.IsNullOrWhiteSpace(rawPhoto)
+        ? noPhoto
+        : (rawPhoto.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || rawPhoto.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+            ? rawPhoto
+            : (rawPhoto.StartsWith("~/", StringComparison.OrdinalIgnoreCase)
+                ? Url.Content(rawPhoto)
+                : (rawPhoto.StartsWith("/", StringComparison.OrdinalIgnoreCase)
+                    ? rawPhoto
+                    : Url.Content("~/images/products/" + rawPhoto.TrimStart('/')))));
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card card-info card-outline">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="bi bi-image me-2"></i>Chỉnh sửa ảnh
+                </h3>
+            </div>
+            <form asp-action="UpdatePhoto" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <input asp-for="PhotoID" type="hidden" />
+                <input asp-for="ProductID" type="hidden" />
+                <div class="card-body">
+                    <div class="alert alert-info"><strong>Sản phẩm:</strong> @productName</div>
+                    <div class="mb-3">
+                        <label class="form-label">Ảnh hiện tại</label><br />
+                        <img src="@previewImg"
+                             class="img-thumbnail"
+                             style="max-height:200px"
+                             onerror="this.onerror=null;this.src='@noPhoto';" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tải file mới</label>
+                        <input type="file" name="uploadedFile" class="form-control" accept="image/*" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Photo" class="form-label">Hoặc URL ảnh</label>
+                        <input asp-for="Photo" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Mô tả</label>
+                        <input asp-for="Description" class="form-control" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="DisplayOrder" class="form-label">Thứ tự</label>
+                            <input asp-for="DisplayOrder" type="number" min="0" class="form-control" />
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex align-items-end">
+                            <div class="form-check">
+                                <input asp-for="IsHidden" class="form-check-input" />
+                                <label class="form-check-label" for="IsHidden">Ẩn hình</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i>Lưu</button>
+                    <a href="@Url.Action("ListPhotos", "Product", new { id = productID })" class="btn btn-secondary">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

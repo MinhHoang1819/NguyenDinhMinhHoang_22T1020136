@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Đặt hàng";
+    var customer = ViewBag.Customer as Customer;
+    var cart = ViewBag.Cart as List<CartItem> ?? new();
+    decimal cartTotal = ViewBag.CartTotal ?? 0m;
+    var provinces = ViewBag.Provinces as List<SV22T1020136.Models.DataDictionary.Province> ?? new();
+}
+
+<div class="container py-4 checkout-page">
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Cart" asp-action="Index">Giỏ hàng</a></li>
+            <li class="breadcrumb-item active">Đặt hàng</li>
+        </ol>
+    </nav>
+
+    <div class="checkout-hero reveal mb-4">
+        <h1 class="h4 fw-bold mb-1"><i class="bi bi-credit-card me-2 text-primary"></i>Thanh toán và giao hàng</h1>
+        <p class="text-muted mb-0 small">Xác nhận địa chỉ giao hàng trước khi hoàn tất đơn.</p>
+    </div>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <form method="post" asp-action="Checkout">
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="checkout-card">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-truck me-2"></i>Thông tin giao hàng</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Khách hàng</label>
+                        <input type="text" class="form-control" value="@customer?.CustomerName" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tỉnh / Thành phố <span class="text-danger">*</span></label>
+                        <select name="deliveryProvince" class="form-select" required>
+                            <option value="">-- Chọn tỉnh/thành --</option>
+                            @foreach (var p in provinces)
+                            {
+                                <option value="@p.ProvinceName" selected="@(p.ProvinceName == customer?.Province)">@p.ProvinceName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Địa chỉ giao hàng <span class="text-danger">*</span></label>
+                        <textarea name="deliveryAddress" class="form-control" rows="2" required>@customer?.Address</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="checkout-card checkout-summary-sticky">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-receipt me-2"></i>Đơn hàng (@cart.Sum(x => x.Quantity) sản phẩm)</h5>
+                    @foreach (var item in cart)
+                    {
+                        <div class="d-flex justify-content-between align-items-center mb-2 pb-2" style="border-bottom: 1px solid #f1f5f9;">
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="@ShopUi.ProductImage(item.Photo)" style="width: 40px; height: 40px; object-fit: contain; border-radius: 4px;" alt="@item.ProductName" onerror="this.onerror=null;this.src='@ShopUi.ProductPlaceholder';" />
+                                <div>
+                                    <div class="small fw-bold">@item.ProductName</div>
+                                    <div class="small text-muted">x@item.Quantity</div>
+                                </div>
+                            </div>
+                            <div class="text-price small">@item.TotalPrice.ToString("N0") đ</div>
+                        </div>
+                    }
+                    <div class="cart-total-bar d-flex justify-content-between align-items-center mt-3">
+                        <strong class="fs-6">Tổng cộng</strong>
+                        <strong class="text-price fs-4">@cartTotal.ToString("N0") đ</strong>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3 py-2 fw-bold">
+                        <i class="bi bi-check-circle me-2"></i>Xác nhận đặt hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

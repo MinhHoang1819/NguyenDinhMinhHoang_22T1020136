@@ -1,0 +1,28 @@
+﻿@* @model SV22T1020104.Admin.Controllers.ShipperController.Shipper
+@{
+    ViewData["Title"] = "Thêm người giao hàng";
+}
+
+<div class="card card-success card-outline">
+    <div class="card-header">
+        <h3 class="card-title">Thêm người giao hàng</h3>
+    </div>
+
+    <form asp-action="Create" method="post">
+        <div class="card-body">
+            <div class="mb-3">
+                <label>Tên người giao</label>
+                <input asp-for="ShipperName" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label>Điện thoại</label>
+                <input asp-for="Phone" class="form-control" />
+            </div>
+        </div>
+
+        <div class="card-footer text-end">
+            <a asp-action="Index" class="btn btn-secondary">Huỷ</a>
+            <button class="btn btn-success"><i class="bi bi-save"></i> Lưu</button>
+        </div>
+    </form>
+</div> *@

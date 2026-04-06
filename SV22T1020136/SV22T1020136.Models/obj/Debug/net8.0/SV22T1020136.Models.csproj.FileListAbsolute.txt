@@ -1,0 +1,55 @@
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.deps.json
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfoInputs.cache
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfo.cs
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.csproj.CoreCompileInputs.cache
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\refint\SV22T1020136.Models.dll
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\source\repos\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\ref\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.deps.json
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfoInputs.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfo.cs
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.csproj.CoreCompileInputs.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\refint\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\ref\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.deps.json
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfoInputs.cache
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfo.cs
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.csproj.CoreCompileInputs.cache
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\refint\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\Downloads\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\ref\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.deps.json
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfoInputs.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfo.cs
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.csproj.CoreCompileInputs.cache
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\refint\SV22T1020136.Models.dll
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\admin\Downloads\SV22T1020136 (2)\SV22T1020136\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\ref\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.deps.json
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\bin\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfoInputs.cache
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.AssemblyInfo.cs
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.csproj.CoreCompileInputs.cache
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\refint\SV22T1020136.Models.dll
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\SV22T1020136.Models.pdb
+C:\Users\minhh\Downloads\SV22T1020136 (1)\SV22T1020136\SV22T1020136.Models\obj\Debug\net8.0\ref\SV22T1020136.Models.dll
